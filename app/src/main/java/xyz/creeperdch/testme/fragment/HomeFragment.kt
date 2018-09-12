@@ -1,5 +1,6 @@
 package xyz.creeperdch.testme.fragment
 
+import android.view.KeyEvent
 import android.view.View
 import kotlinx.android.synthetic.main.fragment_home.*
 import xyz.creeperdch.testme.R
@@ -25,6 +26,16 @@ class HomeFragment : BaseFragment() {
     }
 
     override fun initListener(view: View) {
+        webView.setOnKeyListener { _, keyCode, _ ->
+            if (keyCode == KeyEvent.KEYCODE_BACK && webView.canGoBack()) {
+                webView.goBack()
+                true
+            } else false
+        }
+        home_smartRefresh.setOnRefreshListener {
+            home_smartRefresh.finishRefresh(2000)
+            webView.loadUrl("https://晨晨.xyz/")
+        }
     }
 
     override fun onTaskDestroy() {

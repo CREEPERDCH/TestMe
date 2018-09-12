@@ -65,12 +65,12 @@ class GalleryFragment : BaseFragment() {
             recyclerView.smoothScrollToPosition(0)
         }
         smartRefreshLayout.setOnRefreshListener {
-            smartRefreshLayout.finishRefresh(3000)
+            smartRefreshLayout.finishRefresh(2000)
             page = 1
             requestBenefit(0, quantity, page)
         }
         smartRefreshLayout.setOnLoadMoreListener {
-            smartRefreshLayout.finishLoadMore(3000)
+            smartRefreshLayout.finishLoadMore(2000)
             page += 1
             requestBenefit(1, quantity, page)
         }
