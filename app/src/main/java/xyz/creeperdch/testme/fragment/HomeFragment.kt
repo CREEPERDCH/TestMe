@@ -21,7 +21,6 @@ class HomeFragment : BaseFragment() {
     }
 
     override fun initData(view: View) {
-        webView.initWebViewSettings()
         webView.loadUrl("https://晨晨.xyz/")
     }
 
