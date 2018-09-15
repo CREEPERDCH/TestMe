@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.gyf.barlibrary.ImmersionBar
 import com.trello.rxlifecycle2.LifecycleTransformer
 import com.trello.rxlifecycle2.components.support.RxFragment
 import io.reactivex.ObservableTransformer
@@ -19,7 +18,6 @@ import io.reactivex.schedulers.Schedulers
  */
 abstract class BaseFragment : RxFragment() {
 
-    private var immersionBar: ImmersionBar? = null
     private var isDestory: Boolean = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -29,10 +27,6 @@ abstract class BaseFragment : RxFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        immersionBar = ImmersionBar.with(this)
-        immersionBar?.fitsSystemWindows(true)
-        immersionBar?.statusBarDarkFont(true, 0.2f)
-        immersionBar?.init()
         this.initView(view)
         this.initData(view)
         this.initListener(view)
@@ -75,8 +69,5 @@ abstract class BaseFragment : RxFragment() {
         super.onDestroy()
         onTaskDestroy()
         isDestory = true
-        if (null != immersionBar) {
-            immersionBar?.destroy()
-        }
     }
 }

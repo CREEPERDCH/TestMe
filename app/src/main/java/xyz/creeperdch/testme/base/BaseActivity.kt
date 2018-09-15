@@ -1,13 +1,14 @@
 package xyz.creeperdch.testme.base
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
-import com.gyf.barlibrary.ImmersionBar
 import com.trello.rxlifecycle2.LifecycleTransformer
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import io.reactivex.ObservableTransformer
@@ -20,17 +21,12 @@ import io.reactivex.schedulers.Schedulers
  */
 abstract class BaseActivity : RxAppCompatActivity() {
 
-    private var immersionBar: ImmersionBar? = null
     private var isDestory: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(loadLayout())
         isDestory = false
-        immersionBar = ImmersionBar.with(this)
-        immersionBar?.fitsSystemWindows(true)
-        immersionBar?.statusBarDarkFont(true, 0.2f)
-        immersionBar?.init()
         initView()
         initData()
         initListener()
@@ -93,11 +89,22 @@ abstract class BaseActivity : RxAppCompatActivity() {
         }
     }
 
+    @SuppressLint("ObsoleteSdkInt")
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (hasFocus && Build.VERSION.SDK_INT >= 19) {
+            val decorView = window.decorView
+            decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    or View.SYSTEM_UI_FLAG_FULLSCREEN
+                    or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         isDestory = true
-        if (null != immersionBar) {
-            immersionBar?.destroy()
-        }
     }
 }
