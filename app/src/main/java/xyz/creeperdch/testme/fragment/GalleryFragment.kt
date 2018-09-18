@@ -53,8 +53,14 @@ class GalleryFragment : BaseFragment() {
                 .subscribe(object : ApiObserver<List<BenefitBean>>(activity!!) {
                     override fun onHandleSuccess(t: List<BenefitBean>) {
                         when (_tag) {
-                            0 -> galleryAdapter?.setNewData(t)
-                            1 -> galleryAdapter?.addData(t)
+                            0 -> {
+                                galleryAdapter?.setNewData(t)
+                                smartRefreshLayout.finishRefresh()
+                            }
+                            1 -> {
+                                galleryAdapter?.addData(t)
+                                smartRefreshLayout.finishLoadMore()
+                            }
                         }
                     }
                 })
@@ -65,7 +71,6 @@ class GalleryFragment : BaseFragment() {
             recyclerView.smoothScrollToPosition(0)
         }
         smartRefreshLayout.setOnRefreshListener {
-            smartRefreshLayout.finishRefresh(2000)
             page = 1
             requestBenefit(0, quantity, page)
         }
