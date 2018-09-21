@@ -20,6 +20,10 @@ object ApiFactory {
 
     private const val API_URL = "http://gank.io/"
 
+    private const val API_URL_USER = "http://hn1.api.okayapi.com/"
+
+    private const val APP_KEY = "054DEE1EEC23CCD1A2143A1A8FA1B5EC"
+
     private const val TIME_OUT = 30L
 
     private val httpClient = OkHttpClient.Builder()
@@ -38,7 +42,23 @@ object ApiFactory {
             .readTimeout(TIME_OUT, TimeUnit.SECONDS)
             .build()
 
-    private val retrofitService = Retrofit.Builder()
+    private val userClient = OkHttpClient.Builder()
+            //添加通用的header
+            .addInterceptor { chain ->
+                val builder = chain.request().newBuilder()
+                builder.addHeader("app_key", APP_KEY)
+                chain.proceed(builder.build())
+            }
+            //添加httpLog日志拦截
+            .addInterceptor(HttpLoggingInterceptor(HttpLoggingInterceptor.Logger { message ->
+                Log.i("RetrofitLog", "retrofitBack = $message")
+            }).setLevel(HttpLoggingInterceptor.Level.BODY))
+            //超时请求时间
+            .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
+            .readTimeout(TIME_OUT, TimeUnit.SECONDS)
+            .build()
+
+    private val gankService = Retrofit.Builder()
             .baseUrl(API_URL)
             .addConverterFactory(GsonConverterFactory.create(buildGson()))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -46,8 +66,20 @@ object ApiFactory {
             .build()
             .create(ApiService::class.java)
 
-    fun getInstance(): ApiService {
-        return retrofitService
+    private val userService = Retrofit.Builder()
+            .baseUrl(API_URL_USER)
+            .addConverterFactory(GsonConverterFactory.create(buildGson()))
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .client(userClient)
+            .build()
+            .create(ApiService::class.java)
+
+    fun getInstanceForGank(): ApiService {
+        return gankService
+    }
+
+    fun getInstanceForUser(): ApiService {
+        return userService
     }
 
     private fun buildGson(): Gson {

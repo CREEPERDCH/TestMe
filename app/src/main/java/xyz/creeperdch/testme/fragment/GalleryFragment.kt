@@ -48,7 +48,7 @@ class GalleryFragment : BaseFragment() {
      * 福利
      */
     private fun requestBenefit(_tag: Int, quantity: Int, page: Int) {
-        val observable = ApiFactory.getInstance().requestBenefit(quantity, page)
+        val observable = ApiFactory.getInstanceForGank().requestBenefit(quantity, page)
         observable.compose(compose(this.bindToLifecycle<Result<List<BenefitBean>>>()))
                 .subscribe(object : ApiObserver<List<BenefitBean>>(activity!!) {
                     override fun onHandleSuccess(t: List<BenefitBean>) {

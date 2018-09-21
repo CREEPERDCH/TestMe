@@ -6,16 +6,15 @@
     android:background="#FFF5F5F5"
     android:orientation="vertical">
 
-    <TextView
+    <com.wuhenzhizao.titlebar.widget.CommonTitleBar
         android:id="@+id/titleBar"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="#FFFFFFFF"
-        android:gravity="center"
-        android:text="@string/gank_io"
-        android:textColor="#FF000000"
-        android:textSize="18sp"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content"
+        app:centerText="@string/gank_io"
+        app:centerType="textView"
+        app:fillStatusBar="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:showBottomLine="true" />
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/smartRefreshLayout"
