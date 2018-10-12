@@ -1,9 +1,9 @@
 package xyz.creeperdch.testme.net
 
 import io.reactivex.Observable
-import retrofit2.http.*
+import retrofit2.http.GET
+import retrofit2.http.Path
 import xyz.creeperdch.testme.bean.BenefitBean
-import xyz.creeperdch.testme.bean.RegisterBean
 
 /**
  * Created by creeper on 2018/9/10
@@ -18,10 +18,4 @@ interface ApiService {
             @Path("page") page: Int
     ): Observable<Result<List<BenefitBean>>>
 
-    @FormUrlEncoded
-    @POST("?s=App.User.Register/}")
-    fun register(
-            @Field("username") username: String,
-            @Field("password") password: String
-    ): Observable<UserResult<RegisterBean>>
 }
