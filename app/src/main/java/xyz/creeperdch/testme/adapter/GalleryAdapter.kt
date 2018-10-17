@@ -17,5 +17,6 @@ class GalleryAdapter(data: MutableList<BenefitBean>?) : BaseQuickAdapter<Benefit
     override fun convert(helper: BaseViewHolder, item: BenefitBean) {
         val imageView = helper.getView<ImageView>(R.id.imageView)
         Glide.with(mContext).load(item.url).into(imageView)
+        helper.addOnClickListener(R.id.imageView)
     }
 }

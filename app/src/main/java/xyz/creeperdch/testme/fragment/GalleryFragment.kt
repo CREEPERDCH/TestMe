@@ -5,12 +5,14 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import kotlinx.android.synthetic.main.fragment_gallery.*
 import xyz.creeperdch.testme.R
 import xyz.creeperdch.testme.adapter.GalleryAdapter
 import xyz.creeperdch.testme.base.BaseFragment
 import xyz.creeperdch.testme.bean.BenefitBean
+import xyz.creeperdch.testme.instance.ARouterConfig
 import xyz.creeperdch.testme.net.ApiFactory
 import xyz.creeperdch.testme.net.ApiObserver
 import xyz.creeperdch.testme.net.Result
@@ -101,6 +103,13 @@ class GalleryFragment : BaseFragment() {
                 }
             }
         })
+        galleryAdapter?.setOnItemChildClickListener { adapter, _, position ->
+            val data = adapter.data[position] as BenefitBean
+            ARouter.getInstance()
+                    .build(ARouterConfig.ACTIVITY_URL_SHOW_BIG_IMAGE)
+                    .withString("url", data.url)
+                    .navigation()
+        }
     }
 
     override fun onTaskDestroy() {

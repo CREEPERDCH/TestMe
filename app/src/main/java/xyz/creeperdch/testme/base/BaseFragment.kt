@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.alibaba.android.arouter.launcher.ARouter
 import com.trello.rxlifecycle2.LifecycleTransformer
 import com.trello.rxlifecycle2.components.support.RxFragment
 import io.reactivex.ObservableTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import xyz.creeperdch.testme.widget.view.FloatToast
 
 /**
  * Created by creeper on 2018/9/8
@@ -27,6 +29,8 @@ abstract class BaseFragment : RxFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        ARouter.getInstance().inject(activity)
+        FloatToast.getInstance().init(activity!!)
         this.initView(view)
         this.initData(view)
         this.initListener(view)
@@ -48,6 +52,10 @@ abstract class BaseFragment : RxFragment() {
 
     fun toast(resId: Int) {
         Toast.makeText(activity, resId, Toast.LENGTH_SHORT).show()
+    }
+
+    fun floatToast(title: String, content: String) {
+        FloatToast.getInstance().createToast(title, content)
     }
 
     /**
