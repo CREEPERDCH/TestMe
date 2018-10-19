@@ -7,4 +7,5 @@ package xyz.creeperdch.testme.instance
  */
 object ARouterConfig {
     const val ACTIVITY_URL_SHOW_BIG_IMAGE = "/main/gallery/show_big_image"//查看大图页面
+    const val ACTIVITY_URL_LIGHT = "/main/settings/light"//手电筒
 }

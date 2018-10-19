@@ -16,7 +16,6 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-
         <meta-data
             android:name="android.max_aspect"
             android:value="2.2" />
@@ -24,14 +23,17 @@
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activity.ShowBigImageActivity"
             android:configChanges="locale|layoutDirection"
             android:theme="@style/TransparentActivity" />
-
+        <activity
+            android:name=".activity.LightActivity"
+            android:configChanges="locale|layoutDirection" />
     </application>
+
 </manifest>
