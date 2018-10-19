@@ -25,6 +25,7 @@ class LightActivity : BaseActivity(), SensorEventListener {
     }
 
     override fun initView() {
+        tv_hint.text = "光能手电筒，有光的时候就会亮。如果没有光的时候会不会亮呢？绝对不亮！那么有什么办法能在没光的时候打开它呢？只需要用另一个手机打开手电筒照射即可打开手电筒。"
     }
 
     override fun initData() {
