@@ -37,6 +37,7 @@ class SettingsFragment : BaseFragment() {
     override fun initData(view: View) {
         settingData = ArrayList()
         settingData?.add(SettingsBean("沙雕手电筒", BaseConfig.SETTINGS_LIGHT))
+        settingData?.add(SettingsBean("活动倒计时Demo", BaseConfig.SETTINGS_COUNT_DOWN))
         settingsAdapter?.setNewData(settingData)
     }
 
@@ -46,6 +47,9 @@ class SettingsFragment : BaseFragment() {
             when (clickedItem.id) {
                 BaseConfig.SETTINGS_LIGHT -> {//沙雕手电筒
                     aRouter.build(ARouterConfig.ACTIVITY_URL_LIGHT).navigation()
+                }
+                BaseConfig.SETTINGS_COUNT_DOWN -> {//活动倒计时
+                    aRouter.build(ARouterConfig.ACTIVITY_URL_COUNT_DOWN).navigation()
                 }
             }
         }
