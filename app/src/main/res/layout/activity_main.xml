@@ -20,6 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FFFFFFFF"
+        app:itemIconTint="@drawable/select_main_item"
+        app:itemTextColor="@drawable/select_main_item"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/menu_bar" />
 
