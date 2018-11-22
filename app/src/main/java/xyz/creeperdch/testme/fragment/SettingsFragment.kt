@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.fragment_settings.*
 import xyz.creeperdch.testme.R
 import xyz.creeperdch.testme.adapter.SettingsAdapter
 import xyz.creeperdch.testme.base.BaseFragment
-import xyz.creeperdch.testme.bean.SettingsBean
+import xyz.creeperdch.testme.bean.ItemsBean
 import xyz.creeperdch.testme.instance.ARouterConfig
 import xyz.creeperdch.testme.instance.BaseConfig
 
@@ -20,7 +20,7 @@ import xyz.creeperdch.testme.instance.BaseConfig
 class SettingsFragment : BaseFragment() {
 
     private var aRouter = ARouter.getInstance()
-    private var settingData: ArrayList<SettingsBean>? = null
+    private var mSettingData: ArrayList<ItemsBean>? = null
     private var settingsAdapter: SettingsAdapter? = null
 
     override fun loadLayout(): Int {
@@ -35,21 +35,25 @@ class SettingsFragment : BaseFragment() {
     }
 
     override fun initData(view: View) {
-        settingData = ArrayList()
-        settingData?.add(SettingsBean("沙雕手电筒", BaseConfig.SETTINGS_LIGHT))
-        settingData?.add(SettingsBean("活动倒计时Demo", BaseConfig.SETTINGS_COUNT_DOWN))
-        settingsAdapter?.setNewData(settingData)
+        mSettingData = ArrayList()
+        mSettingData?.add(ItemsBean("沙雕手电筒", BaseConfig.SETTINGS_LIGHT))
+        mSettingData?.add(ItemsBean("活动倒计时Demo", BaseConfig.SETTINGS_COUNT_DOWN))
+        mSettingData?.add(ItemsBean("DialogDemo", BaseConfig.SETTING_DIALOG))
+        settingsAdapter?.setNewData(mSettingData)
     }
 
     override fun initListener(view: View) {
-        settingsAdapter?.setOnItemChildClickListener { adapter, view, position ->
-            val clickedItem = adapter.data[position] as SettingsBean
+        settingsAdapter?.setOnItemChildClickListener { adapter, _, position ->
+            val clickedItem = adapter.data[position] as ItemsBean
             when (clickedItem.id) {
                 BaseConfig.SETTINGS_LIGHT -> {//沙雕手电筒
                     aRouter.build(ARouterConfig.ACTIVITY_URL_LIGHT).navigation()
                 }
                 BaseConfig.SETTINGS_COUNT_DOWN -> {//活动倒计时
                     aRouter.build(ARouterConfig.ACTIVITY_URL_COUNT_DOWN).navigation()
+                }
+                BaseConfig.SETTING_DIALOG -> {//Dialog
+                    aRouter.build(ARouterConfig.ACTIVITY_URL_DIALOG).navigation()
                 }
             }
         }

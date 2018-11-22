@@ -10,4 +10,6 @@
     <color name="_FF808080">#FF808080</color>
     <color name="_CC000000">#CC000000</color>
     <color name="_FFF5F5F5">#FFF5F5F5</color>
+
+    <color name="_dialog_background">#33000000</color>
 </resources>

@@ -5,4 +5,4 @@ package xyz.creeperdch.testme.bean
  * Hint:
  * Email: wwwwyn4240@gmail.com
  */
-data class SettingsBean(var title: String, var id: Int)
+data class ItemsBean(var title: String, var id: Int)
