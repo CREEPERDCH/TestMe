@@ -35,7 +35,8 @@
             android:name=".activity.LightActivity"
             android:configChanges="locale|layoutDirection" />
         <activity android:name=".activity.CountDownActivity" />
-        <activity android:name=".activity.DialogActivity"></activity>
+        <activity android:name=".activity.DialogActivity" />
+        <activity android:name=".activity.HistoryActivity"></activity>
     </application>
 
 </manifest>

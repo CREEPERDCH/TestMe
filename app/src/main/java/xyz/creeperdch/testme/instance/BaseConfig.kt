@@ -8,5 +8,6 @@ package xyz.creeperdch.testme.instance
 object BaseConfig {
     const val SETTINGS_LIGHT = 9527//手电筒
     const val SETTINGS_COUNT_DOWN = 9526//活动倒计时
-    const val SETTING_DIALOG = 9525//Dialog
+    const val SETTINGS_DIALOG = 9525//Dialog
+    const val SETTINGS_HISTORY = 9524//段子
 }

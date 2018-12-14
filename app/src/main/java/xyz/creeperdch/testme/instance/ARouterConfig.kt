@@ -10,4 +10,5 @@ object ARouterConfig {
     const val ACTIVITY_URL_LIGHT = "/main/settings/light"//手电筒
     const val ACTIVITY_URL_COUNT_DOWN = "/main/settings/count_down"//活动倒计时
     const val ACTIVITY_URL_DIALOG = "/main/settings/dialog_demo"//Dialog
+    const val ACTIVITY_URL_HISTORY = "/main/settings/history"//历史上的今天
 }

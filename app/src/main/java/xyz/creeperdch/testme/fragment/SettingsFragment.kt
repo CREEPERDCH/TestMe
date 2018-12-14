@@ -38,7 +38,8 @@ class SettingsFragment : BaseFragment() {
         mSettingData = ArrayList()
         mSettingData?.add(ItemsBean("沙雕手电筒", BaseConfig.SETTINGS_LIGHT))
         mSettingData?.add(ItemsBean("活动倒计时Demo", BaseConfig.SETTINGS_COUNT_DOWN))
-        mSettingData?.add(ItemsBean("DialogDemo", BaseConfig.SETTING_DIALOG))
+        mSettingData?.add(ItemsBean("DialogDemo", BaseConfig.SETTINGS_DIALOG))
+        mSettingData?.add(ItemsBean("历史上的今天", BaseConfig.SETTINGS_HISTORY))
         settingsAdapter?.setNewData(mSettingData)
     }
 
@@ -52,8 +53,11 @@ class SettingsFragment : BaseFragment() {
                 BaseConfig.SETTINGS_COUNT_DOWN -> {//活动倒计时
                     aRouter.build(ARouterConfig.ACTIVITY_URL_COUNT_DOWN).navigation()
                 }
-                BaseConfig.SETTING_DIALOG -> {//Dialog
+                BaseConfig.SETTINGS_DIALOG -> {//Dialog
                     aRouter.build(ARouterConfig.ACTIVITY_URL_DIALOG).navigation()
+                }
+                BaseConfig.SETTINGS_HISTORY -> {//历史上的今天
+                    aRouter.build(ARouterConfig.ACTIVITY_URL_HISTORY).navigation()
                 }
             }
         }
