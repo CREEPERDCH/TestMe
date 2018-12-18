@@ -1,10 +1,10 @@
 package xyz.creeperdch.testme.base
 
 import android.os.Bundle
-import android.widget.Toast
 import com.alibaba.android.arouter.launcher.ARouter
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import xyz.creeperdch.testme.widget.view.FloatToast
+import xyz.creeperdch.testme.widget.view.TestToast
 
 
 /**
@@ -20,6 +20,7 @@ abstract class BaseActivity : RxAppCompatActivity() {
         setContentView(loadLayout())
         isDestory = false
         FloatToast.getInstance().init(this)
+        TestToast.getInstance().init(this)
         initView()
         initData()
         initListener()
@@ -31,11 +32,11 @@ abstract class BaseActivity : RxAppCompatActivity() {
     abstract fun initListener()
 
     fun toast(string: String?) {
-        Toast.makeText(this, string, Toast.LENGTH_SHORT).show()
+        TestToast.getInstance().buildToast(string)
     }
 
     fun toast(resId: Int) {
-        Toast.makeText(this, resId, Toast.LENGTH_SHORT).show()
+        TestToast.getInstance().buildToast(getString(resId))
     }
 
     fun floatToast(title: String, content: String) {

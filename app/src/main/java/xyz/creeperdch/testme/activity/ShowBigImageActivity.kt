@@ -33,8 +33,9 @@ class ShowBigImageActivity : BaseActivity() {
         }
         photoView.setOnLongClickListener {
             Snackbar.make(ll_show_root, "保存到相册？", Snackbar.LENGTH_LONG)
-                    .setAction("保存") { _ ->
-                        floatToast("保存成功！", "路径: /data/data/media/")
+                    .setAction("保存") {
+                        //                        floatToast("保存成功！", "路径: /data/data/media/")
+                        toast("保存成功！")
                     }
                     .show()
             true
