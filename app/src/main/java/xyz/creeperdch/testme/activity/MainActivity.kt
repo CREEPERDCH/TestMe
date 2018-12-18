@@ -1,6 +1,7 @@
 package xyz.creeperdch.testme.activity
 
 import android.support.v4.app.Fragment
+import com.alibaba.android.arouter.facade.annotation.Route
 import kotlinx.android.synthetic.main.activity_main.*
 import xyz.creeperdch.testme.R
 import xyz.creeperdch.testme.base.BaseActivity
@@ -8,7 +9,9 @@ import xyz.creeperdch.testme.fragment.GalleryFragment
 import xyz.creeperdch.testme.fragment.HomeFragment
 import xyz.creeperdch.testme.fragment.SettingsFragment
 import xyz.creeperdch.testme.fragment.UserFragment
+import xyz.creeperdch.testme.instance.ARouterConfig
 
+@Route(path = ARouterConfig.ACTIVITY_URL_MAIN)
 class MainActivity : BaseActivity() {
 
     private var homeFragment: HomeFragment? = null

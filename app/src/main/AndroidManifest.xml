@@ -15,18 +15,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning"
+        tools:targetApi="n">
         <meta-data
             android:name="android.max_aspect"
             android:value="2.2" />
 
-        <activity android:name=".activity.MainActivity">
+        <activity
+            android:name=".activity.SplashActivity"
+            android:theme="@style/AppTheme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.MainActivity" />
         <activity
             android:name=".activity.ShowBigImageActivity"
             android:configChanges="locale|layoutDirection"
@@ -36,7 +40,7 @@
             android:configChanges="locale|layoutDirection" />
         <activity android:name=".activity.CountDownActivity" />
         <activity android:name=".activity.DialogActivity" />
-        <activity android:name=".activity.HistoryActivity"></activity>
+        <activity android:name=".activity.HistoryActivity" />
     </application>
 
 </manifest>
